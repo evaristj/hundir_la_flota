@@ -7,36 +7,36 @@ namespace HundirLaFlota
     class Casilla
     {
 
-        private int file;
-        private int column;
-        private char state;
-        private char water = '.';
-        private char ship = 'B';
-        private char touched= 'X';
+        private int fila;
+        private int columna;
+        private char estado;
+        private char agua = '.';
+        private char barco = 'B';
+        private char tocado= 'X';
 
-        public Casilla(int file, int column, char state)
+        public Casilla(int fila, int columna, char estado)
         {
-            this.file = file;
-            this.column = column;
-            this.state = water;
+            this.fila = fila;
+            this.columna = columna;
+            this.estado = agua;
         }
 
         public int ColumnTable
         {
             get
             {
-               return column;
+               return columna;
             }
             set
             {
-                column = value;
+                columna = value;
             }
         }
 
-        public int FileTable { get => file; set => file = value; }
-        public char Water { get => water; set => water = value; }
-        public char Ship { get => ship; set => ship = value; }
-        public char Touched { get => touched; set => touched = value; }
-        public char State { get => state; set => state = value; }
+        public int FileTable { get => fila; set => fila = value; }
+        public char Water { get => agua; set => agua = value; }
+        public char Ship { get => barco; set => barco = value; }
+        public char Touched { get => tocado; set => tocado = value; }
+        public char State { get => estado; set => estado = value; }
     }
 }
