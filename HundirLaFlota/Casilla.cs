@@ -14,29 +14,26 @@ namespace HundirLaFlota
         private char barco = 'B';
         private char tocado= 'X';
 
-        public Casilla(int fila, int columna, char estado)
+        public Casilla(int fila, int columna)
         {
             this.fila = fila;
             this.columna = columna;
-            this.estado = agua;
+            estado = agua;
         }
 
-        public int ColumnTable
+        public int GetColumna()
         {
-            get
-            {
                return columna;
-            }
-            set
-            {
-                columna = value;
-            }
+        }
+        public void SetColumna(int valor)
+        {
+                columna = valor;
         }
 
-        public int FileTable { get => fila; set => fila = value; }
-        public char Water { get => agua; set => agua = value; }
-        public char Ship { get => barco; set => barco = value; }
-        public char Touched { get => tocado; set => tocado = value; }
-        public char State { get => estado; set => estado = value; }
+        public int Fila { get => fila; set => fila = value; }
+        public char Estado { get => estado; set => estado = value; }
+        public char Agua { get => agua; set => agua = value; }
+        public char Barco { get => barco; set => barco = value; }
+        public char Tocado { get => tocado; set => tocado = value; }
     }
 }
