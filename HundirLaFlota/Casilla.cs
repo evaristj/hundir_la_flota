@@ -9,17 +9,16 @@ namespace HundirLaFlota
 
         private int file;
         private int column;
-        private char water;
-        private char ship;
-        private char touched;
+        private char state;
+        private char water = '.';
+        private char ship = 'B';
+        private char touched= 'X';
 
-        public Casilla(int file, int column, char water, char ship, char touched)
+        public Casilla(int file, int column, char state)
         {
             this.file = file;
             this.column = column;
-            this.water = water;
-            this.ship = ship;
-            this.touched = touched;
+            this.state = water;
         }
 
         public int ColumnTable
@@ -38,5 +37,6 @@ namespace HundirLaFlota
         public char Water { get => water; set => water = value; }
         public char Ship { get => ship; set => ship = value; }
         public char Touched { get => touched; set => touched = value; }
+        public char State { get => state; set => state = value; }
     }
 }
