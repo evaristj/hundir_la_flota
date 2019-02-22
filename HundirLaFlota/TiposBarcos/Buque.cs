@@ -7,11 +7,10 @@ namespace HundirLaFlota
     class Buque : Barco
     {
 
-        Barco[] tamBuque = new Barco[3];
-
-        public Buque(Casilla[] casillas, int tamañoBuque) : base(casillas, tamañoBuque)
+        public Buque(int tamañoBuque) : base(tamañoBuque)
         {
-
+            tamañoBuque = 3;
         }
+
     }
 }

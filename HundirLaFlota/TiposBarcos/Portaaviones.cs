@@ -6,11 +6,10 @@ namespace HundirLaFlota
 {
     class Portaaviones : Barco
     {
-        Barco[] tamPortaaviones = new Barco[4];
 
-        public Portaaviones(Casilla[] casillas, int tamañoPortAv) : base(casillas, tamañoPortAv)
+        public Portaaviones(int tamañoPortAv) : base(tamañoPortAv)
         {
-
+            tamañoPortAv = 4;
         }
     }
 }

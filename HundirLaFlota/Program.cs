@@ -8,6 +8,14 @@ namespace HundirLaFlota
         {
             Console.WriteLine("Hello World!");
 
+            
+            Buque buque = new Buque(3);
+            Casilla casilla = new Casilla(12,2);
+          
+
+            Console.WriteLine(buque.EstasHundido() + " : " + buque.GetType());
+            
+
             Console.ReadKey();
         }
     }

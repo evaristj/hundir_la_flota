@@ -1,0 +1,11 @@
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.csprojAssemblyReference.cache
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.csproj.CoreCompileInputs.cache
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.AssemblyInfoInputs.cache
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.AssemblyInfo.cs
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\bin\Debug\netcoreapp2.1\HundirLaFlota.deps.json
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\bin\Debug\netcoreapp2.1\HundirLaFlota.runtimeconfig.json
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\bin\Debug\netcoreapp2.1\HundirLaFlota.runtimeconfig.dev.json
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\bin\Debug\netcoreapp2.1\HundirLaFlota.dll
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\bin\Debug\netcoreapp2.1\HundirLaFlota.pdb
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.dll
+C:\Users\Evarist\source\repos\HundirLaFlota\HundirLaFlota\obj\Debug\netcoreapp2.1\HundirLaFlota.pdb

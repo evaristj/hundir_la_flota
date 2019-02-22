@@ -10,10 +10,12 @@ namespace HundirLaFlota
 
         // Un constructor que recibirá como parámetro el tamaño del array de casillas, e
         // internamente inicializará el array con ese tamaño.
-        protected Barco(Casilla[] casillas, int tamaño)
+        protected Barco(int tamaño)
         {
             casillas = new Casilla[tamaño];
         }
+
+        protected Casilla[] Casillas { get => casillas; set => casillas = value; }
 
         public bool EstasHundido()
         {

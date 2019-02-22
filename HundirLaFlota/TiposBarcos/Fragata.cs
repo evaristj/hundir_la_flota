@@ -6,10 +6,10 @@ namespace HundirLaFlota
 {
     class Fragata : Barco
     {
-        Barco[] tamFragata = new Barco[2];
 
-        public Fragata(Casilla[] casillas, int tamañoFragata) : base(casillas, tamañoFragata)
+        public Fragata(int tamañoFragata) : base(tamañoFragata)
         {
+            tamañoFragata = 2;
         }
     }
 }
