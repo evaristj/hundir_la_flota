@@ -19,6 +19,7 @@ namespace HundirLaFlota
             this.fila = fila;
             this.columna = columna;
             estado = agua;
+            Console.Write(estado);
         }
 
         public int GetColumna()
@@ -30,10 +31,52 @@ namespace HundirLaFlota
                 columna = valor;
         }
 
-        public int Fila { get => fila; set => fila = value; }
-        public char Estado { get => estado; set => estado = value; }
-        public char Agua { get => agua; set => agua = value; }
-        public char Barco { get => barco; set => barco = value; }
-        public char Tocado { get => tocado; set => tocado = value; }
+        public int GetFila()
+        {
+            return fila;
+        }
+        public void SetFila(int valor)
+        {
+            fila = valor;
+        }
+
+        public char GetEstado()
+        {
+            return estado;
+        }
+
+        public void SetEstado(char newEstado)
+        {
+            estado = newEstado;
+        }
+
+        public char GetAgua()
+        {
+            return agua;
+        }
+
+        public void SetAgua()
+        {
+            estado = agua;
+        }
+
+        public char GetBarco()
+        {
+            return barco;
+        }
+        public void SetBarco()
+        {
+            estado = barco;
+        }
+
+        public char GetTocado()
+        {
+            return tocado;
+        }
+        public void SetTocado()
+        {
+            estado = tocado;
+        }
+       
     }
 }

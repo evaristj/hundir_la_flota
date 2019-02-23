@@ -10,10 +10,13 @@ namespace HundirLaFlota
 
             
             Buque buque = new Buque(3);
-            Casilla casilla = new Casilla(12,2);
-          
 
-            Console.WriteLine(buque.EstasHundido() + " : " + buque.GetType());
+            Tablero tablero = new Tablero();
+
+            //tablero.InitTablero(); 
+            //Casilla casilla = new Casilla();
+            
+            Console.WriteLine(tablero);
             
 
             Console.ReadKey();
