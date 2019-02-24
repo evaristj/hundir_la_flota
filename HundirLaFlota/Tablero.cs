@@ -36,35 +36,24 @@ namespace HundirLaFlota
 
             barcos = new Barco[BARCOS];
         }
-        /*
-        // iniciamos el tablero
-        public void InitTablero()
+     
+        private bool PonerBarco(int barco)
         {
-            for (int i = 0; i < casilla.Length; i++)
-            {
-                for (int j = 0; j < casilla.Length; j++)
-                {
-                    casilla[i, j] = new Casilla(FILAS, COLUMNAS);
-                    
-                    Console.Write(casilla[i, j]);
-                }
-                Console.WriteLine("##");
-            }
-        }
-        */
 
-        /*
-        // lo mostramos
-        public void MostrarTablero()
-        {
-            for (int i = 0; i < casilla.Length; i++)
-            {
-                for (int j = 0; j < casilla.Length; j++)
-                {
-                    casilla[i, j] = new Casilla();
-                }
-            }
+        // me he quedado por aqui, consultar aqui 
+        // https://github.com/kfelsner/hundirLaFlota/blob/master/Tablero.java
+
+            return true;
         }
-        */
+
+        public void Rellenar()
+        {
+
+        }
+
+        public void Generar()
+        {
+
+        }
     }
 }

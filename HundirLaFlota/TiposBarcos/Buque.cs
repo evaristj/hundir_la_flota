@@ -6,10 +6,10 @@ namespace HundirLaFlota
 {
     class Buque : Barco
     {
+        private static int tamañoBuque = 3;
 
-        public Buque(int tamañoBuque) : base(tamañoBuque)
+        public Buque() : base(tamañoBuque)
         {
-            tamañoBuque = 3;
         }
 
     }
