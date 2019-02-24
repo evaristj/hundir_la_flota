@@ -39,6 +39,27 @@ namespace HundirLaFlota
      
         private bool PonerBarco(int barco)
         {
+            while (barco > 4 || barco < 0)
+            {
+                if (barco == 1)
+                {
+                    Lancha lancha = new Lancha();
+                }
+                else if (barco == 2)
+                {
+                    Fragata fragata = new Fragata();
+                }
+                else if (barco == 3)
+                {
+                    Buque buque = new Buque();
+                }
+                else if (barco == 4)
+                {
+                    Portaaviones portaaviones = new Portaaviones();
+                }
+            }
+            
+
 
         // me he quedado por aqui, consultar aqui 
         // https://github.com/kfelsner/hundirLaFlota/blob/master/Tablero.java
