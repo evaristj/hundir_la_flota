@@ -6,9 +6,7 @@ namespace HundirLaFlota
 {
     class Portaaviones : Barco
     {
-        private static int tamañoPortAv = 4;
-
-        public Portaaviones() : base(tamañoPortAv)
+        public Portaaviones() : base(4)
         {
         }
     }

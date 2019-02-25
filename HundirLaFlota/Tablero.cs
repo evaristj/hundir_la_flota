@@ -11,70 +11,144 @@ namespace HundirLaFlota
         private const int COLUMNAS = 8;
         private const int BARCOS = 4;
 
-        private Casilla[,] casilla;
-        private Barco[] barcos;
-
+        private Casilla[,] casillas = new Casilla[FILAS, COLUMNAS];
+        private Barco[] barcos = new Barco[BARCOS];
+       
         // en el constructor creamos el tablero
         public Tablero()
         {
-            casilla = new Casilla[FILAS, COLUMNAS];
-            Console.WriteLine("0 1 2 3 4 5 6 7");
+
 
             for (int i = 0; i < FILAS; i++)
             {
                 for (int j = 0; j < COLUMNAS; j++)
                 {
-                    casilla[i, j] = new Casilla(FILAS, COLUMNAS);
-
-                    Console.Write(" ");
+                    casillas[i, j] = new Casilla(i,j);
                 }
-                Console.Write(i);
-
-                Console.WriteLine("");
-            }
-
-
-            barcos = new Barco[BARCOS];
-        }
-     
-        private bool PonerBarco(int barco)
-        {
-            while (barco > 4 || barco < 0)
-            {
-                if (barco == 1)
-                {
-                    Lancha lancha = new Lancha();
-                }
-                else if (barco == 2)
-                {
-                    Fragata fragata = new Fragata();
-                }
-                else if (barco == 3)
-                {
-                    Buque buque = new Buque();
-                }
-                else if (barco == 4)
-                {
-                    Portaaviones portaaviones = new Portaaviones();
-                }
+                // ¿cómo hacer para modificar el estado de una casilla?
+                // Console.Write(i);
             }
             
+            barcos[0] = new Lancha();
+            barcos[1] = new Fragata();
+            barcos[2] = new Buque();
+            barcos[3] = new Portaaviones();
+        }
+     
+        private bool PonerBarco(int barco, int fila, int columna, char orientacion)
+        {
+            bool existeFila = false;
+            bool existeColumna = false;
+            bool horizontal = false;
+            bool vertical = false;
+            Console.WriteLine("entra el metodo ponerBarco");
+            // tipos de barco
+          
+            // comprobamos que fila y columna existen en tablero
+            if (fila < 8 && !(fila < 0))
+            {
+                existeFila = true;
+            }
+
+            if (columna < 8 && !(columna < 0))
+            {
+                existeColumna = true;
+            }
 
 
-        // me he quedado por aqui, consultar aqui 
-        // https://github.com/kfelsner/hundirLaFlota/blob/master/Tablero.java
+            // comprobar orientacion correcta
+            // en la posicion horizontal, habrá que comprobar que hay hueco en las columnas
+            int result = COLUMNAS - columna;
+            if (orientacion == 'h' && result >= barco)
+            {
+                
+                // en este for recorremos el array de casillas barco para que tenga el mismo
+                // valor que el array de casillas del tablero
+                for (int i = columna; i <= columna + barco; i++)
+                {
+                    // se coloca el barco en la fila que le hemos pasado hasta la columna (horizontal)
 
+                    casillas[fila, i].SetBarco();
+                    // en casillasBarco se indica que la posicion del barco 
+                    // se corresponde con la del tablero
+                    barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
+
+                }
+                
+            }
+            Console.WriteLine("El barco ha sido colocado.");
             return true;
         }
 
         public void Rellenar()
         {
+            int barco;
+            int fila;
+            int columna;
+            char orientacion;
+            string[] tiposDeBarcos = { "LANCHA", "FRAGATA", "BUQUE", "PORTAAVIONES" };
+
+           
+            for (int i = 0; i < tiposDeBarcos.Length; i++)
+            {
+                Console.WriteLine("Rellenando barco: {0}:", tiposDeBarcos[i]);
+
+                barco = i;
+
+                Console.WriteLine("Introduce la fila donde lo quieres colocar:");
+                fila = Convert.ToInt16(Console.ReadLine());
+                while (fila > 8 || fila < 0)
+                {
+                    Console.WriteLine("Introduce una fila correcta:");
+                    fila = Convert.ToInt16(Console.ReadLine());
+                }
+
+                Console.WriteLine("Introduce la columna donde lo quieres colocar:");
+                columna = Convert.ToInt16(Console.ReadLine());
+                while (columna > 8 || columna < 0)
+                {
+                    Console.WriteLine("Introduce una columna correcta:");
+                    columna = Convert.ToInt16(Console.ReadLine());
+                }
+
+                Console.WriteLine("Introduce la orientación del barco, h =>horizontal, v =>vertical:");
+                orientacion = Convert.ToChar(Console.ReadLine());
+                bool valido = false;
+                if (orientacion != 'h' || orientacion != 'v')
+                {
+                    valido = true;
+                }
+                while (!valido)
+                {
+                    Console.WriteLine("Introduce una orientación correcta:");
+                    orientacion = Convert.ToChar(Console.ReadLine());
+                }
+
+                PonerBarco(barco, fila, columna, orientacion);
+                MostrarTablero();
+
+            }
 
         }
 
         public void Generar()
         {
 
+        }
+
+        public void MostrarTablero()
+        {
+            Console.WriteLine("0 1 2 3 4 5 6 7");
+
+            for (int i = 0; i < FILAS; i++)
+            {
+                for (int j = 0; j < COLUMNAS; j++)
+                {
+                    Console.Write(casillas[i, j].GetEstado() + " ");
+                }
+
+                Console.WriteLine("" + i);
+            }
         }
     }
 }

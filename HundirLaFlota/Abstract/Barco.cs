@@ -6,16 +6,16 @@ namespace HundirLaFlota
 {
     abstract class Barco
     {
-        private Casilla[] casillasBarco;
+        protected Casilla[] casillasBarco;
 
         // Un constructor que recibirá como parámetro el tamaño del array de casillas, e
         // internamente inicializará el array con ese tamaño.
         protected Barco(int tamaño)
         {
-            casillasBarco = new Casilla[tamaño];
+            casillasBarco = new Casilla[tamaño];        
         }
 
-        protected Casilla[] CasillasBarco { get => casillasBarco; set => casillasBarco = value; }
+        public Casilla[] CasillasBarco { get => casillasBarco; set => casillasBarco = value; }
 
         // comprobamos si el barco ha sido hundido o no
         public bool EstaHundido()

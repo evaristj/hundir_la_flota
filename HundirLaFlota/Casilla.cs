@@ -19,7 +19,6 @@ namespace HundirLaFlota
             this.fila = fila;
             this.columna = columna;
             estado = agua;
-            Console.Write(estado);
         }
 
         public int GetColumna()
@@ -57,7 +56,7 @@ namespace HundirLaFlota
 
         public void SetAgua()
         {
-            estado = agua;
+            SetEstado(agua);
         }
 
         public char GetBarco()
@@ -66,7 +65,7 @@ namespace HundirLaFlota
         }
         public void SetBarco()
         {
-            estado = barco;
+            SetEstado(barco);
         }
 
         public char GetTocado()
@@ -75,7 +74,7 @@ namespace HundirLaFlota
         }
         public void SetTocado()
         {
-            estado = tocado;
+            SetEstado(tocado);
         }
        
     }
