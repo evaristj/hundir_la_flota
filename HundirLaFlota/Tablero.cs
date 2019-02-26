@@ -35,6 +35,7 @@ namespace HundirLaFlota
             barcos[3] = new Portaaviones();
         }
      
+        // metodo para poner barco
         private bool PonerBarco(int barco, int fila, int columna, char orientacion)
         {
             bool existeFila = false;
@@ -43,30 +44,25 @@ namespace HundirLaFlota
             bool vertical = false;
             Console.WriteLine("entra el metodo ponerBarco");
             // tipos de barco
-          
+
             // comprobamos que fila y columna existen en tablero
-            if (fila < 8 && !(fila < 0))
-            {
-                existeFila = true;
-            }
+            existeFila = (fila < 8 && !(fila < 0)) ? true : false;
 
-            if (columna < 8 && !(columna < 0))
-            {
-                existeColumna = true;
-            }
 
+            existeColumna = (columna < 8 && !(columna < 0)) ? true : false;
 
             // comprobar orientacion correcta
             // en la posicion horizontal, habrá que comprobar que hay hueco en las columnas
-            int result = COLUMNAS - columna;
-            if (orientacion == 'h' && result >= barco)
+            int resultH = COLUMNAS - columna;
+            if (orientacion == 'h' && resultH >= barco)
             {
                 
                 // en este for recorremos el array de casillas barco para que tenga el mismo
                 // valor que el array de casillas del tablero
                 for (int i = columna; i <= columna + barco; i++)
                 {
-                    // se coloca el barco en la fila que le hemos pasado hasta la columna (horizontal)
+                    // se coloca el barco en la fila que le hemos pasado, hasta la columna
+                    // que le hemos dicho (horizontal)
 
                     casillas[fila, i].SetBarco();
                     // en casillasBarco se indica que la posicion del barco 
@@ -75,6 +71,17 @@ namespace HundirLaFlota
 
                 }
                 
+            }
+
+            // colocacion vertical
+            
+            if (orientacion == 'v')
+            {
+                for (int i = fila; i <= fila + barco; i++)
+                {
+                    casillas[i, columna].SetBarco();
+                    barcos[barco].CasillasBarco[i - fila] = casillas[i, columna];
+                }
             }
             Console.WriteLine("El barco ha sido colocado.");
             return true;
