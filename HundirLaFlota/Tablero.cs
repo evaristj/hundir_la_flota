@@ -74,19 +74,48 @@ namespace HundirLaFlota
             }
 
             // colocacion vertical
-            
+            bool ocupado = false;
+            int contador = -1;
             if (orientacion == 'v')
             {
                 for (int i = fila; i <= fila + barco; i++)
                 {
-                    casillas[i, columna].SetBarco();
-                    barcos[barco].CasillasBarco[i - fila] = casillas[i, columna];
+                    Console.WriteLine(casillas[i, columna].GetEstado() + " :estado antes del for");
+                    if (casillas[i, columna].GetEstado() != 'B')
+                    {
+                        contador++;
+                    }
+                    Console.WriteLine("contador: {0}", contador);
+                    //Console.WriteLine(casillas[i, columna].GetEstado() + " :estado despues del for");
                 }
+
+                for (int i = fila; i <= fila + barco; i++)
+                {
+                    Console.WriteLine("for de contador {0}: ", contador);
+                   
+                    if (contador == barco)
+                    {
+                        casillas[i, columna].SetBarco();
+                        barcos[barco].CasillasBarco[i - fila] = casillas[i, columna];
+                    }
+                    else
+                    {
+                        ocupado = true;
+                    }
+
+                }
+            }
+            if (ocupado)
+            {
+                Console.WriteLine("El barco NO ha sido colocado.");
+
+                return false;
             }
             Console.WriteLine("El barco ha sido colocado.");
             return true;
         }
 
+        // rellenar tablero
         public void Rellenar()
         {
             int barco;
@@ -94,6 +123,7 @@ namespace HundirLaFlota
             int columna;
             char orientacion;
             string[] tiposDeBarcos = { "LANCHA", "FRAGATA", "BUQUE", "PORTAAVIONES" };
+            bool creado;
 
            
             for (int i = 0; i < tiposDeBarcos.Length; i++)
@@ -131,8 +161,18 @@ namespace HundirLaFlota
                     orientacion = Convert.ToChar(Console.ReadLine());
                 }
 
-                PonerBarco(barco, fila, columna, orientacion);
-                MostrarTablero();
+                creado = PonerBarco(barco, fila, columna, orientacion) ? true : false;
+
+                if (!creado)
+                {
+                    Console.WriteLine("El barco no se ha podido colocar, casillas ocupadas.");
+                    i--;
+                }
+                else
+                {
+                    MostrarTablero();
+                }
+                
 
             }
 
@@ -143,6 +183,7 @@ namespace HundirLaFlota
 
         }
 
+        // mostrar tablero por consola
         public void MostrarTablero()
         {
             Console.WriteLine("0 1 2 3 4 5 6 7");
