@@ -17,7 +17,6 @@ namespace HundirLaFlota
         public Tablero()
         {
 
-
             for (int i = 0; i < FILAS; i++)
             {
                 for (int j = 0; j < COLUMNAS; j++)
@@ -34,9 +33,7 @@ namespace HundirLaFlota
      
         private bool PonerBarco(int barco, int fila, int columna, char orientacion)
         {
-            
-            Console.WriteLine("entra el metodo ponerBarco");
-            
+                        
             // comprobar orientacion correcta
             // en la posicion horizontal, habrá que comprobar que hay hueco en las columnas
             bool ocupado = false;
@@ -44,7 +41,6 @@ namespace HundirLaFlota
             int contadorH = -1;
             if (orientacion == 'h')
             {
-                Console.WriteLine("barco tipo: {0}", barcos[barco]);
 
                 // comprueba que el barco no se salga del tablero
                 if (columna + barco+1 > COLUMNAS)
@@ -56,7 +52,6 @@ namespace HundirLaFlota
                 // valor que el array de casillas del tablero
                 for (int i = columna; i <= columna + barco; i++)
                 {
-                    Console.WriteLine("indice: {0}, columna: {1}: ", i, columna);
                     if (casillas[fila, i].GetEstado() != 'B')
                     {
                         contadorH++;
@@ -74,6 +69,7 @@ namespace HundirLaFlota
                         // en casillasBarco se indica que la posicion del barco 
                         // se corresponde con la del tablero
                         barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
+                        Console.WriteLine("estos son los barcos***: {0}", barcos[barco].ToString());
                     }
                     else
                     {
@@ -87,7 +83,6 @@ namespace HundirLaFlota
             int contadorV = -1;
             if (orientacion == 'v')
             {
-                Console.WriteLine("barco tipo: {0}", barcos[barco]);
                 if (fila + barco+1 > FILAS)
                 {
                     return false;
@@ -177,12 +172,7 @@ namespace HundirLaFlota
                 {
                     Console.WriteLine("El barco no se ha podido colocar, casillas ocupadas.");
                     i--;
-                }
-                else
-                {
-                    MostrarTablero();
-                }
-                
+                }                
             }
 
         }
@@ -210,10 +200,6 @@ namespace HundirLaFlota
                     Console.WriteLine("El barco no se ha podido colocar, casillas ocupadas.");
                     i--;
                 }
-                else
-                {
-                    MostrarTablero();
-                }
             }
         }
 
@@ -231,6 +217,62 @@ namespace HundirLaFlota
 
                 Console.WriteLine("" + i);
             }
+        }
+
+        // este es el metodo para el turno del jugador
+        public string TocadoHundidoJugador(int fila, int columna)
+        {
+            char valor = 'n';
+            string mensaje = "";
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    valor = casillas[fila, columna].GetEstado();
+                }
+            }
+
+            // imprimimos el tablero del ordenador mostrando las casillas que han sido nombradas
+            Console.WriteLine("0 1 2 3 4 5 6 7");
+            for (int i = 0; i < FILAS; i++)
+            {
+               
+                for (int j = 0; j < COLUMNAS; j++)
+                {
+                    if (valor == 'B')
+                    {
+                        casillas[fila, columna].SetTocado();
+                        mensaje = "Barco tocado.";
+                        Console.Write(casillas[i, j].GetEstado() + " ");
+                    }
+                    if (valor == '.')
+                    {
+                        casillas[fila, columna].SetEstado('O');
+                        mensaje = "Agua";
+                        Console.Write(casillas[i, j].GetEstado() + " ");
+                    }
+                }
+
+                Console.WriteLine("" + i);
+               
+            }
+
+            Console.WriteLine("valor de barco: {0} ", valor);
+
+            // comprobamos que el barco este hundido
+            for (int i = 0; i < 4; i++)
+            {
+                // comprobamos que el barco este hundido
+                Console.WriteLine("hundido: {0}, tipo: {1}", barcos[i].EstaHundido().ToString(),
+                    barcos[i].ToString());
+                if (barcos[i].EstaHundido())
+                {
+                    mensaje = "Tocado y hundido";
+                }
+            }
+
+            return mensaje;
         }
     }
 }
