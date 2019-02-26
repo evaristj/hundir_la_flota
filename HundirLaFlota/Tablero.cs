@@ -6,7 +6,6 @@ namespace HundirLaFlota
 {
     class Tablero
     {
-
         private const int FILAS = 8;
         private const int COLUMNAS = 8;
         private const int BARCOS = 4;
@@ -25,8 +24,6 @@ namespace HundirLaFlota
                 {
                     casillas[i, j] = new Casilla(i,j);
                 }
-                // ¿cómo hacer para modificar el estado de una casilla?
-                // Console.Write(i);
             }
             
             barcos[0] = new Lancha();
@@ -35,65 +32,80 @@ namespace HundirLaFlota
             barcos[3] = new Portaaviones();
         }
      
-        // metodo para poner barco
         private bool PonerBarco(int barco, int fila, int columna, char orientacion)
         {
-            bool existeFila = false;
-            bool existeColumna = false;
-            bool horizontal = false;
-            bool vertical = false;
+            
             Console.WriteLine("entra el metodo ponerBarco");
-            // tipos de barco
-
-            // comprobamos que fila y columna existen en tablero
-            existeFila = (fila < 8 && !(fila < 0)) ? true : false;
-
-
-            existeColumna = (columna < 8 && !(columna < 0)) ? true : false;
-
+            
             // comprobar orientacion correcta
             // en la posicion horizontal, habrá que comprobar que hay hueco en las columnas
+            bool ocupado = false;
             int resultH = COLUMNAS - columna;
-            if (orientacion == 'h' && resultH >= barco)
+            int contadorH = -1;
+            if (orientacion == 'h')
             {
-                
+                Console.WriteLine("barco tipo: {0}", barcos[barco]);
+
+                // comprueba que el barco no se salga del tablero
+                if (columna + barco+1 > COLUMNAS)
+                {
+                    return false;
+                }
+
                 // en este for recorremos el array de casillas barco para que tenga el mismo
                 // valor que el array de casillas del tablero
                 for (int i = columna; i <= columna + barco; i++)
                 {
-                    // se coloca el barco en la fila que le hemos pasado, hasta la columna
-                    // que le hemos dicho (horizontal)
-
-                    casillas[fila, i].SetBarco();
-                    // en casillasBarco se indica que la posicion del barco 
-                    // se corresponde con la del tablero
-                    barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
-
+                    Console.WriteLine("indice: {0}, columna: {1}: ", i, columna);
+                    if (casillas[fila, i].GetEstado() != 'B')
+                    {
+                        contadorH++;
+                    }
+                   
+                }
+                // si no existen barcos en esa columna se añaden los barcos
+                for (int i = columna; i <= columna + barco; i++)
+                {
+                    if (contadorH == barco)
+                    {
+                        // se coloca el barco en la fila que le hemos pasado, hasta la columna
+                        // que le hemos dicho (horizontal)
+                        casillas[fila, i].SetBarco();
+                        // en casillasBarco se indica que la posicion del barco 
+                        // se corresponde con la del tablero
+                        barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
+                    }
+                    else
+                    {
+                        ocupado = true;
+                    }
                 }
                 
             }
 
             // colocacion vertical
-            bool ocupado = false;
-            int contador = -1;
+            int contadorV = -1;
             if (orientacion == 'v')
             {
-                for (int i = fila; i <= fila + barco; i++)
+                Console.WriteLine("barco tipo: {0}", barcos[barco]);
+                if (fila + barco+1 > FILAS)
                 {
-                    Console.WriteLine(casillas[i, columna].GetEstado() + " :estado antes del for");
-                    if (casillas[i, columna].GetEstado() != 'B')
-                    {
-                        contador++;
-                    }
-                    Console.WriteLine("contador: {0}", contador);
-                    //Console.WriteLine(casillas[i, columna].GetEstado() + " :estado despues del for");
+                    return false;
                 }
 
+                // comprueba que no exista barcos en esa columna
                 for (int i = fila; i <= fila + barco; i++)
                 {
-                    Console.WriteLine("for de contador {0}: ", contador);
-                   
-                    if (contador == barco)
+                    if (casillas[i, columna].GetEstado() != 'B')
+                    {
+                        contadorV++;
+                    }
+                }
+
+                // si no existen barcos en esa columna se añaden los barcos
+                for (int i = fila; i <= fila + barco; i++)
+                {                   
+                    if (contadorV == barco)
                     {
                         casillas[i, columna].SetBarco();
                         barcos[barco].CasillasBarco[i - fila] = casillas[i, columna];
@@ -102,7 +114,6 @@ namespace HundirLaFlota
                     {
                         ocupado = true;
                     }
-
                 }
             }
             if (ocupado)
@@ -115,7 +126,6 @@ namespace HundirLaFlota
             return true;
         }
 
-        // rellenar tablero
         public void Rellenar()
         {
             int barco;
@@ -173,14 +183,38 @@ namespace HundirLaFlota
                     MostrarTablero();
                 }
                 
-
             }
 
         }
 
         public void Generar()
         {
+            Random r = new Random();
+            int barco, index, fila, columna;
+            char[] orientacion = { 'h', 'v' };
+            string[] tiposDeBarcos = { "LANCHA", "FRAGATA", "BUQUE", "PORTAAVIONES" };
+            bool creado;
 
+
+            for (int i = 0; i < tiposDeBarcos.Length; i++)
+            {
+
+                barco = i;
+                fila = r.Next(0, 7);
+                columna = r.Next(0, 7);
+                index = r.Next(orientacion.Length);
+                creado = PonerBarco(barco, fila, columna, orientacion[index]) ? true : false;
+
+                if (!creado)
+                {
+                    Console.WriteLine("El barco no se ha podido colocar, casillas ocupadas.");
+                    i--;
+                }
+                else
+                {
+                    MostrarTablero();
+                }
+            }
         }
 
         // mostrar tablero por consola

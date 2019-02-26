@@ -10,18 +10,21 @@ namespace HundirLaFlota
 
             
             Tablero tableroJugador = new Tablero();
-            //Tablero tableroOrdenador = new Tablero();
+            Tablero tableroOrdenador = new Tablero();
 
-            tableroJugador.MostrarTablero();
+            //tableroJugador.MostrarTablero();
 
-            //Console.WriteLine(tableroJugador);
-            tableroJugador.Rellenar();
+            // el jugador coloca los barcos
+           // tableroJugador.Rellenar();
+
+            // se colocan los barcos del ordenador
+            tableroOrdenador.Generar();
 
             Console.WriteLine("Tablero con el barco:");
-            tableroJugador.MostrarTablero();
+            //tableroJugador.MostrarTablero();
 
 
-            Console.WriteLine(tableroJugador);
+            //Console.WriteLine(tableroJugador);
 
             Console.ReadKey();
         }
