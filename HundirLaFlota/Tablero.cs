@@ -219,8 +219,7 @@ namespace HundirLaFlota
             }
         }
 
-        // este es el metodo para el turno del jugador
-        public string TocadoHundidoJugador(int fila, int columna)
+        public string Turnos(int fila, int columna, int turno)
         {
             char valor = 'n';
             string mensaje = "";
@@ -234,10 +233,13 @@ namespace HundirLaFlota
             }
 
             // imprimimos el tablero del ordenador mostrando las casillas que han sido nombradas
-            Console.WriteLine("0 1 2 3 4 5 6 7");
+            if (turno == 0)
+            {
+                Console.WriteLine("0 1 2 3 4 5 6 7");
+            }
             for (int i = 0; i < FILAS; i++)
             {
-               
+
                 for (int j = 0; j < COLUMNAS; j++)
                 {
                     if (valor == 'B')
@@ -251,19 +253,21 @@ namespace HundirLaFlota
                         mensaje = "Agua";
                     }
                     // no mostrar los barcos del ordenador
-                    Console.Write(casillas[i, j].GetEstado() + " ");
-                                    }
-                Console.WriteLine("" + i);
+                    if (turno == 0)
+                    {
+                        Console.Write(casillas[i, j].GetEstado() + " ");
+                    }
+                }
+                if (turno == 0)
+                {
+                    Console.WriteLine("" + i);
+                }
             }
-
-            Console.WriteLine("valor de barco: {0} ", valor);
 
             // comprobamos que el barco este hundido
             for (int i = 0; i < 4; i++)
             {
                 // comprobamos que el barco este hundido
-                Console.WriteLine("hundido: {0}, tipo: {1}", barcos[i].EstaHundido().ToString(),
-                    barcos[i].ToString());
                 if (barcos[i].EstaHundido())
                 {
                     mensaje = "Tocado y hundido.";

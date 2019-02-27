@@ -7,6 +7,7 @@ namespace HundirLaFlota
         static void Main(string[] args)
         {
             bool victoria = false;
+            Random r = new Random();
             ConsoleKeyInfo intro;
             int fila, columna;
             char[] valor = { 'X', 'O' };
@@ -19,7 +20,7 @@ namespace HundirLaFlota
             Tablero tableroOponente = new Tablero();
 
             // el jugador coloca los barcos
-            //tableroJugador.Rellenar();
+            tableroJugador.Generar();
 
             Console.WriteLine("Generando barcos del ordenador...");
             // se colocan los barcos del ordenador
@@ -55,14 +56,16 @@ namespace HundirLaFlota
                             columna = Convert.ToInt16(Console.ReadLine());
                         }
 
-                        mensaje = tableroOrdenador.TocadoHundidoJugador(fila, columna);
+                        mensaje = tableroOrdenador.Turnos(fila, columna, 1);
 
                         if (mensaje == "Agua")
                         {
+                            Console.WriteLine(mensaje);
                             tableroOponente.TableroOponente(fila, columna, valor[1]);
 
                         }else if (mensaje == "Barco tocado." || mensaje == "Tocado y hundido.")
                         {
+                            Console.WriteLine(mensaje);
                             tableroOponente.TableroOponente(fila, columna, valor[0]);
                         }
 
@@ -71,10 +74,31 @@ namespace HundirLaFlota
                     {
                         Console.WriteLine("error: {0}", e);
                     }
-                    Console.WriteLine("{0} ", mensaje);
+                    try
+                    {
+                        Console.WriteLine("Turno del ordenador.");
+                        Console.WriteLine("Introduce fila (0 - 7):");
+                        fila = r.Next(0, 7);
+                        Console.WriteLine("Fila: {0} ", fila);
 
-                    Console.WriteLine("Pulsa intro para continuar");
-                    //intro = Console.Read();
+                        Console.WriteLine("Introduce Columna (0 - 7):");
+                        columna = r.Next(0, 7);
+                        Console.WriteLine("Columna: {0} ", columna);
+
+                        mensaje = tableroJugador.Turnos(fila, columna, 0);
+
+                        Console.WriteLine("Turno ordenador: {0} ", mensaje);
+
+                        Console.WriteLine("Pulsa intro para continuar");
+                        intro = Console.ReadKey(true);
+                        Console.WriteLine(intro.KeyChar);
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine("error: {0}", e);
+                    }
+                   
                 }
 
             }
