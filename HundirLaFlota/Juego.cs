@@ -1,5 +1,14 @@
 ﻿using System;
 
+/*
+ * Sanchez García, Evarist Jaume
+ * Practica evaluable Tema 7
+ * Apartado 1 si
+ * Apartado 2 si
+ * Apartado 3 si
+ * Apartado 4 si 
+ */
+
 namespace HundirLaFlota
 {
     class Juego
@@ -85,6 +94,7 @@ namespace HundirLaFlota
                     if (mensaje == "Victoria!!!")
                     {
                         victoria = true;
+                        Console.WriteLine("Victoria del jugador! \nFIN DE JUEGO");
                     }
 
                     Console.WriteLine(continuar);
@@ -112,6 +122,7 @@ namespace HundirLaFlota
                     if (mensaje == "Victoria!!!")
                     {
                         victoria = true;
+                        Console.WriteLine("Victoria del ordenador! \nFIN DE JUEGO");
                     }
 
                     Console.WriteLine("Turno ordenador: {0} ", mensaje);
@@ -131,15 +142,7 @@ namespace HundirLaFlota
             else
             {
                 Console.WriteLine("NO has pulsado enter.");
-
             }
-
-            Console.WriteLine("Tablero con el barco:");
-            //tableroJugador.MostrarTablero();
-
-
-            //Console.WriteLine(tableroJugador);
-
             Console.ReadKey();
         }
     }
