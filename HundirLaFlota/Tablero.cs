@@ -69,6 +69,8 @@ namespace HundirLaFlota
                         // en casillasBarco se indica que la posicion del barco 
                         // se corresponde con la del tablero
                         barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
+                        Console.WriteLine("columna barco: {0}, FILA: {1}, ESTADO: {2}", barcos[barco].CasillasBarco[i-columna].GetColumna(),
+                        barcos[barco].CasillasBarco[i-columna].GetFila(), barcos[barco].CasillasBarco[i-columna].GetEstado());
                         Console.WriteLine("estos son los barcos***: {0}", barcos[barco].ToString());
                     }
                     else
@@ -221,15 +223,38 @@ namespace HundirLaFlota
 
         public string Turnos(int fila, int columna, int turno)
         {
-            char valor = 'n';
             string mensaje = "";
+            int contador = 0;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < barcos.Length; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < barcos[i].CasillasBarco.Length; j++)
                 {
-                    valor = casillas[fila, columna].GetEstado();
+                    if (barcos[i].CasillasBarco[j] == casillas[fila, columna])
+                    {
+                        casillas[fila, columna].SetTocado();
+                        mensaje = "Tocado.";
+                        Console.WriteLine("BARCO: {0}, CASILLASBARCO: {1}", i, j);
+                        if (barcos[i].EstaHundido())
+                        {
+                            mensaje = "Tocado y hundido.";
+                        }
+
+                    }
                 }
+                
+            }
+            for (int i = 0; i < barcos.Length; i++)
+            {
+                if (barcos[i].EstaHundido())
+                {
+                    contador++;
+                }
+            }
+            // comprobamos victoria
+            if (contador == 4)
+            {
+                mensaje = "Victoria!!!";
             }
 
             // imprimimos el tablero del ordenador mostrando las casillas que han sido nombradas
@@ -242,12 +267,8 @@ namespace HundirLaFlota
 
                 for (int j = 0; j < COLUMNAS; j++)
                 {
-                    if (valor == 'B')
-                    {
-                        casillas[fila, columna].SetTocado();
-                        mensaje = "Barco tocado.";
-                    }
-                    if (valor == '.')
+
+                    if (casillas[fila, columna].GetEstado() == '.')
                     {
                         casillas[fila, columna].SetEstado('O');
                         mensaje = "Agua";
@@ -261,16 +282,6 @@ namespace HundirLaFlota
                 if (turno == 0)
                 {
                     Console.WriteLine("" + i);
-                }
-            }
-
-            // comprobamos que el barco este hundido
-            for (int i = 0; i < 4; i++)
-            {
-                // comprobamos que el barco este hundido
-                if (barcos[i].EstaHundido())
-                {
-                    mensaje = "Tocado y hundido.";
                 }
             }
 
