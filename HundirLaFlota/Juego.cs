@@ -9,12 +9,14 @@ namespace HundirLaFlota
             bool victoria = false;
             ConsoleKeyInfo intro;
             int fila, columna;
+            char[] valor = { 'X', 'O' };
             string mensaje = "";
             Console.WriteLine("Hello World!");
 
             
             Tablero tableroJugador = new Tablero();
             Tablero tableroOrdenador = new Tablero();
+            Tablero tableroOponente = new Tablero();
 
             // el jugador coloca los barcos
             //tableroJugador.Rellenar();
@@ -54,6 +56,16 @@ namespace HundirLaFlota
                         }
 
                         mensaje = tableroOrdenador.TocadoHundidoJugador(fila, columna);
+
+                        if (mensaje == "Agua")
+                        {
+                            tableroOponente.TableroOponente(fila, columna, valor[1]);
+
+                        }else if (mensaje == "Barco tocado." || mensaje == "Tocado y hundido.")
+                        {
+                            tableroOponente.TableroOponente(fila, columna, valor[0]);
+                        }
+
                     }
                     catch (Exception e)
                     {

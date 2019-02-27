@@ -244,18 +244,16 @@ namespace HundirLaFlota
                     {
                         casillas[fila, columna].SetTocado();
                         mensaje = "Barco tocado.";
-                        Console.Write(casillas[i, j].GetEstado() + " ");
                     }
                     if (valor == '.')
                     {
                         casillas[fila, columna].SetEstado('O');
                         mensaje = "Agua";
-                        Console.Write(casillas[i, j].GetEstado() + " ");
                     }
-                }
-
+                    // no mostrar los barcos del ordenador
+                    Console.Write(casillas[i, j].GetEstado() + " ");
+                                    }
                 Console.WriteLine("" + i);
-               
             }
 
             Console.WriteLine("valor de barco: {0} ", valor);
@@ -268,11 +266,32 @@ namespace HundirLaFlota
                     barcos[i].ToString());
                 if (barcos[i].EstaHundido())
                 {
-                    mensaje = "Tocado y hundido";
+                    mensaje = "Tocado y hundido.";
                 }
             }
 
             return mensaje;
+        }
+
+        // tablero sin mostrar barcos del oponente
+        public void TableroOponente(int fila, int columna, char valor)
+        {
+            Console.WriteLine("0 1 2 3 4 5 6 7");
+            for (int i = 0; i < FILAS; i++)
+            {
+
+                for (int j = 0; j < COLUMNAS; j++)
+                {
+                   
+                    casillas[i, j].GetEstado();
+                    
+                    casillas[fila, columna].SetEstado(valor);
+                    
+                    // no mostrar los barcos del ordenador
+                    Console.Write(casillas[i, j].GetEstado() + " ");
+                }
+                Console.WriteLine("" + i);
+            }
         }
     }
 }
