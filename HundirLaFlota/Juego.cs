@@ -29,11 +29,14 @@ namespace HundirLaFlota
             Tablero tableroOponente = new Tablero();
 
             // el jugador coloca los barcos
-            tableroJugador.Generar();
+            tableroJugador.Rellenar();
+            Console.WriteLine("Tu tablero:");
+            tableroJugador.MostrarTablero();
 
             Console.WriteLine("Generando barcos del ordenador...");
             // se colocan los barcos del ordenador
             tableroOrdenador.Generar();
+            Console.WriteLine("Tablero ordenador:");
             tableroOrdenador.MostrarTablero();
 
             Console.WriteLine("Proceso finalizado. Pulsa intro para comenzar!");
@@ -110,11 +113,11 @@ namespace HundirLaFlota
                     Console.Clear();
                     Console.WriteLine("Turno del ordenador.");
                     Console.WriteLine("Introduce fila (0 - 7):");
-                    fila = r.Next(0, 7);
+                    fila = r.Next(0, 8);
                     Console.WriteLine("Fila: {0} ", fila);
 
                     Console.WriteLine("Introduce Columna (0 - 7):");
-                    columna = r.Next(0, 7);
+                    columna = r.Next(0, 8);
                     Console.WriteLine("Columna: {0} ", columna);
 
                     mensaje = tableroJugador.Turnos(fila, columna, turno[0]);
