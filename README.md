@@ -3,15 +3,15 @@ Proyecto para aplicación de consola sobre el famoso juego de "Hundir La Flota" 
 
 ## Tablero
 
-0 1 2 3 4 5 6 7
-. . . . . . . . 0    * Los barcos se representan con 'B'
-. . . . . . . . 1    * Agua se representa con '.'
-. . . . . . . . 2    * Cuando un barco está tocado se representa con 'X'
-. . . . . . . . 3    * Hay cuatro tipos de barcos:
-. . . . . . . . 4        * Lancha (1) = B
-. . . . . . . . 5        * Fragata (2) = BB
-. . . . . . . . 6        * Buque (3) = BBB
-. . . . . . . . 7        * Portaaviones (4) = BBBB
+* 0 1 2 3 4 5 6 7
+* . . . . . . . . 0    * Los barcos se representan con 'B'
+* . . . . . . . . 1    * Agua se representa con '.'
+* . . . . . . . . 2    * Cuando un barco está tocado se representa con 'X'
+* . . . . . . . . 3    * Hay cuatro tipos de barcos:
+* . . . . . . . . 4        * Lancha (1) = B
+* . . . . . . . . 5        * Fragata (2) = BB
+* . . . . . . . . 6        * Buque (3) = BBB
+* . . . . . . . . 7        * Portaaviones (4) = BBBB
 
 ### Inicio del juego
 Para empezar tenemos la clase Juego.cs donde el primer jugador, en este caso tú, empezará colocando los barcos en un tablero 8x8. Los barcos se colocarán según las siguientes reglas: no se pueden colocar unos encima de otros y no se pueden salir del tablero 8x8.
