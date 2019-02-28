@@ -7,36 +7,75 @@ namespace HundirLaFlota
     class Casilla
     {
 
-        private int file;
-        private int column;
-        private char water;
-        private char ship;
-        private char touched;
+        private int fila;
+        private int columna;
+        private char estado;
+        private char agua = '.';
+        private char barco = 'B';
+        private char tocado= 'X';
 
-        public Casilla(int file, int column, char water, char ship, char touched)
+        public Casilla(int fila, int columna)
         {
-            this.file = file;
-            this.column = column;
-            this.water = water;
-            this.ship = ship;
-            this.touched = touched;
+            this.fila = fila;
+            this.columna = columna;
+            estado = agua;
         }
 
-        public int ColumnTable
+        public int GetColumna()
         {
-            get
-            {
-               return column;
-            }
-            set
-            {
-                column = value;
-            }
+               return columna;
+        }
+        public void SetColumna(int valor)
+        {
+                columna = valor;
         }
 
-        public int FileTable { get => file; set => file = value; }
-        public char Water { get => water; set => water = value; }
-        public char Ship { get => ship; set => ship = value; }
-        public char Touched { get => touched; set => touched = value; }
+        public int GetFila()
+        {
+            return fila;
+        }
+        public void SetFila(int valor)
+        {
+            fila = valor;
+        }
+
+        public char GetEstado()
+        {
+            return estado;
+        }
+
+        public void SetEstado(char newEstado)
+        {
+            estado = newEstado;
+        }
+
+        public char GetAgua()
+        {
+            return agua;
+        }
+
+        public void SetAgua()
+        {
+            SetEstado(agua);
+        }
+
+        public char GetBarco()
+        {
+            return barco;
+        }
+        public void SetBarco()
+        {
+            SetEstado(barco);
+        }
+
+        public char GetTocado()
+        {
+            return tocado;
+        }
+        public void SetTocado()
+        {
+            SetEstado(tocado);
+        }
+       
     }
 }
