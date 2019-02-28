@@ -35,9 +35,9 @@ namespace HundirLaFlota
         {
                         
             // comprobar orientacion correcta
-            // en la posicion horizontal, habrá que comprobar que hay hueco en las columnas
             bool ocupado = false;
             int resultH = COLUMNAS - columna;
+            int contadorV = -1;
             int contadorH = -1;
             if (orientacion == 'h')
             {
@@ -48,8 +48,6 @@ namespace HundirLaFlota
                     return false;
                 }
 
-                // en este for recorremos el array de casillas barco para que tenga el mismo
-                // valor que el array de casillas del tablero
                 for (int i = columna; i <= columna + barco; i++)
                 {
                     if (casillas[fila, i].GetEstado() != 'B')
@@ -58,31 +56,23 @@ namespace HundirLaFlota
                     }
                    
                 }
+
                 // si no existen barcos en esa columna se añaden los barcos
                 for (int i = columna; i <= columna + barco; i++)
                 {
                     if (contadorH == barco)
                     {
-                        // se coloca el barco en la fila que le hemos pasado, hasta la columna
-                        // que le hemos dicho (horizontal)
                         casillas[fila, i].SetBarco();
-                        // en casillasBarco se indica que la posicion del barco 
-                        // se corresponde con la del tablero
                         barcos[barco].CasillasBarco[i - columna] = casillas[fila, i];
-                        Console.WriteLine("columna barco: {0}, FILA: {1}, ESTADO: {2}", barcos[barco].CasillasBarco[i-columna].GetColumna(),
-                        barcos[barco].CasillasBarco[i-columna].GetFila(), barcos[barco].CasillasBarco[i-columna].GetEstado());
-                        Console.WriteLine("estos son los barcos***: {0}", barcos[barco].ToString());
                     }
                     else
                     {
                         ocupado = true;
                     }
                 }
-                
             }
 
             // colocacion vertical
-            int contadorV = -1;
             if (orientacion == 'v')
             {
                 if (fila + barco+1 > FILAS)
@@ -116,9 +106,9 @@ namespace HundirLaFlota
             if (ocupado)
             {
                 Console.WriteLine("El barco NO ha sido colocado.");
-
                 return false;
             }
+
             Console.WriteLine("El barco ha sido colocado.");
             return true;
         }
@@ -132,11 +122,9 @@ namespace HundirLaFlota
             string[] tiposDeBarcos = { "LANCHA", "FRAGATA", "BUQUE", "PORTAAVIONES" };
             bool creado;
 
-           
             for (int i = 0; i < tiposDeBarcos.Length; i++)
             {
                 Console.WriteLine("Rellenando barco: {0}:", tiposDeBarcos[i]);
-
                 barco = i;
 
                 Console.WriteLine("Introduce la fila donde lo quieres colocar:");
@@ -187,7 +175,6 @@ namespace HundirLaFlota
             string[] tiposDeBarcos = { "LANCHA", "FRAGATA", "BUQUE", "PORTAAVIONES" };
             bool creado;
 
-
             for (int i = 0; i < tiposDeBarcos.Length; i++)
             {
 
@@ -221,6 +208,7 @@ namespace HundirLaFlota
             }
         }
 
+        // turnos de juego
         public string Turnos(int fila, int columna, int turno)
         {
             string mensaje = "";
@@ -234,7 +222,6 @@ namespace HundirLaFlota
                     {
                         casillas[fila, columna].SetTocado();
                         mensaje = "Tocado.";
-                        Console.WriteLine("BARCO: {0}, CASILLASBARCO: {1}", i, j);
                         if (barcos[i].EstaHundido())
                         {
                             mensaje = "Tocado y hundido.";
@@ -244,6 +231,7 @@ namespace HundirLaFlota
                 }
                 
             }
+            // comprueba cuantos barcos hay hundidos
             for (int i = 0; i < barcos.Length; i++)
             {
                 if (barcos[i].EstaHundido())
@@ -251,6 +239,7 @@ namespace HundirLaFlota
                     contador++;
                 }
             }
+
             // comprobamos victoria
             if (contador == 4)
             {
@@ -273,6 +262,7 @@ namespace HundirLaFlota
                         casillas[fila, columna].SetEstado('O');
                         mensaje = "Agua";
                     }
+
                     // no mostrar los barcos del ordenador
                     if (turno == 0)
                     {
@@ -299,12 +289,12 @@ namespace HundirLaFlota
                 {
                    
                     casillas[i, j].GetEstado();
-                    
                     casillas[fila, columna].SetEstado(valor);
                     
                     // no mostrar los barcos del ordenador
                     Console.Write(casillas[i, j].GetEstado() + " ");
                 }
+
                 Console.WriteLine("" + i);
             }
         }

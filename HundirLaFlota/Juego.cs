@@ -1,8 +1,17 @@
 ﻿using System;
 
+/*
+ * Sanchez García, Evarist Jaume
+ * Practica evaluable Tema 7
+ * Apartado 1 si
+ * Apartado 2 si
+ * Apartado 3 si
+ * Apartado 4 si 
+ */
+
 namespace HundirLaFlota
 {
-    class Juego
+    class taJuego
     {
         static void Main(string[] args)
         {
@@ -20,11 +29,14 @@ namespace HundirLaFlota
             Tablero tableroOponente = new Tablero();
 
             // el jugador coloca los barcos
-            tableroJugador.Generar();
+            tableroJugador.Rellenar();
+            Console.WriteLine("Tu tablero:");
+            tableroJugador.MostrarTablero();
 
             Console.WriteLine("Generando barcos del ordenador...");
             // se colocan los barcos del ordenador
             tableroOrdenador.Generar();
+            Console.WriteLine("Tablero ordenador:");
             tableroOrdenador.MostrarTablero();
 
             Console.WriteLine("Proceso finalizado. Pulsa intro para comenzar!");
@@ -85,6 +97,7 @@ namespace HundirLaFlota
                     if (mensaje == "Victoria!!!")
                     {
                         victoria = true;
+                        Console.WriteLine("Victoria del jugador! \nFIN DE JUEGO");
                     }
 
                     Console.WriteLine(continuar);
@@ -100,11 +113,11 @@ namespace HundirLaFlota
                     Console.Clear();
                     Console.WriteLine("Turno del ordenador.");
                     Console.WriteLine("Introduce fila (0 - 7):");
-                    fila = r.Next(0, 7);
+                    fila = r.Next(0, 8);
                     Console.WriteLine("Fila: {0} ", fila);
 
                     Console.WriteLine("Introduce Columna (0 - 7):");
-                    columna = r.Next(0, 7);
+                    columna = r.Next(0, 8);
                     Console.WriteLine("Columna: {0} ", columna);
 
                     mensaje = tableroJugador.Turnos(fila, columna, turno[0]);
@@ -112,6 +125,7 @@ namespace HundirLaFlota
                     if (mensaje == "Victoria!!!")
                     {
                         victoria = true;
+                        Console.WriteLine("Victoria del ordenador! \nFIN DE JUEGO");
                     }
 
                     Console.WriteLine("Turno ordenador: {0} ", mensaje);
@@ -131,15 +145,7 @@ namespace HundirLaFlota
             else
             {
                 Console.WriteLine("NO has pulsado enter.");
-
             }
-
-            Console.WriteLine("Tablero con el barco:");
-            //tableroJugador.MostrarTablero();
-
-
-            //Console.WriteLine(tableroJugador);
-
             Console.ReadKey();
         }
     }
