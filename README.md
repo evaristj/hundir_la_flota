@@ -7,10 +7,10 @@ Proyecto para aplicación de consola sobre el famoso juego de "Hundir La Flota" 
 * Agua se representa con '.'
 * Cuando un barco está tocado se representa con 'X'
 * Hay cuatro tipos de barcos:
-* Lancha (1) = B
-* Fragata (2) = BB
-* Buque (3) = BBB
-* Portaaviones (4) = BBBB
+1. Lancha = B
+2. Fragata = BB
+3.  Buque = BBB
+4. Portaaviones = BBBB
 
 ### Inicio del juego
 Para empezar tenemos la clase Juego.cs donde el primer jugador, en este caso tú, empezará colocando los barcos en un tablero 8x8. Los barcos se colocarán según las siguientes reglas: no se pueden colocar unos encima de otros y no se pueden salir del tablero 8x8.
