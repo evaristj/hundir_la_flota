@@ -11,7 +11,7 @@
 
 namespace HundirLaFlota
 {
-    class taJuego
+    class Juego
     {
         static void Main(string[] args)
         {
